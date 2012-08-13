@@ -1,3 +1,28 @@
+:javascript
+
+  function createCoin() {
+    coin = {}
+    coin.year = $('#year').val();
+    coin.face_value = $('#face_value').val();
+    
+    $.ajax({url : '/coin/new',
+            data : coin,
+            type : 'POST',
+            dataType : 'json',
+            success : function(data) {
+              window.location = '/index'
+            }
+      
+    });
+  
+  }
+  $(function() {
+    $('#submit-new-coin').click(createCoin);
+    
+  })
+  
+  
+  
 %h1 New coin form
 
 #new-coin
@@ -6,4 +31,14 @@
       %label.control-label
         Year
       .controls
-        %input{:placeholder => "xxxx"}
+        %input{:placeholder => "xxxx", :id => "year"}
+    .control-group
+      %label.control-label
+        Face value
+      .controls
+        %input{:placeholder => "penny, nickel, dime, ...", :id => "face_value"}
+        
+    
+    .control-group
+      .controls
+        %input.btn.btn-primary#submit-new-coin{:type => 'submit', :value => 'Enter coin'}
