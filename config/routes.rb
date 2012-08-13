@@ -1,3 +1,5 @@
 CoinsApp::Application.routes.draw do
-  root :to => "home#index"
+  get "coin/index"
+
+  root :to => "coin#index"
 end
