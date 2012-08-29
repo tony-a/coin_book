@@ -1,5 +1,5 @@
 class Coin < ActiveRecord::Base
-  attr_read :year, :coin_value, :mint_loc
+  attr_reader :year, :coin_value, :mint_loc
 
   def initialize(year, coin_value, mint_loc)
     @year = year

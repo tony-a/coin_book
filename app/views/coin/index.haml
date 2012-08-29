@@ -1,26 +1,29 @@
 :javascript
 
   function createCoin() {
-    coin = {}
-    coin.year = $('#year').val();
-    coin.face_value = $('#face_value').val();
+    new_coin = {}
+    new_coin.year = $('#year').val();
+    new_coin.face_value = $('#face_value').val();
     
-    $.ajax({url : '/coin/new',
-            data : coin,
-            type : 'POST',
+    $.ajax({url : 'coin/new',
+            data : new_coin,
             dataType : 'json',
             success : function(data) {
-              window.location = '/index'
-            }
-      
+              window.location = '/'
+            }  
     });
-  
   }
+  
+  $(function() {
+     var availableTags = ["Philadelphia", "Denver", "San Francisco", "West Point", "Fort Knox"];
+     $("#mint-loc").autocomplete({
+       source: availableTags
+     });
+   })
+  
   $(function() {
     $('#submit-new-coin').click(createCoin);
-    
   })
-  
   
   
 %h1 New coin form
@@ -28,17 +31,26 @@
 #new-coin
   %form.form-horizontal{:id => 'new-coin', :onsubmit => 'return false;'}
     .control-group
+      %lable.control-label
+        Coin
+      .controls
+        %input{:placeholder => "penny, nickel, dime, ..."}
+    .control-group
       %label.control-label
         Year
       .controls
         %input{:placeholder => "xxxx", :id => "year"}
     .control-group
       %label.control-label
+        Mint Location
+      .controls
+        %input#mint-loc{:type => "text", :placeholder => "Philadelphia, Denver, San Francisco, ..."}
+    .control-group
+      %label.control-label
         Face value
       .controls
         %input{:placeholder => "penny, nickel, dime, ...", :id => "face_value"}
-        
     
     .control-group
       .controls
-        %input.btn.btn-primary#submit-new-coin{:type => 'submit', :value => 'Enter coin'}
+        %input.btn.btn-primary#submit-new-coin{:type => 'submit', :value => 'Submit Coin'}

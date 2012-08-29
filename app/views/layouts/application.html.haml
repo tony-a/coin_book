@@ -7,8 +7,8 @@
     %title= content_for?(:title) ? yield(:title) : "Coins App"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application", "jquery-ui-1.8.23.custom.css", :media => "all"
+    = javascript_include_tag "jquery-ui-1.8.23.min.js", "jquery-ui-1.8.23.custom.min.js", "application"
     = csrf_meta_tags
     = yield(:head)
   %body
