@@ -17,9 +17,12 @@
   $(function() {
      var availableTags = ["Philadelphia", "Denver", "San Francisco", "West Point", "Fort Knox"];
      $("#mint-loc").autocomplete({
-       source: availableTags
+       source: availableTags,
+       delay: 0,
+       autoFocus: true,
      });
    })
+
   
   $(function() {
     $('#submit-new-coin').click(createCoin);
@@ -32,7 +35,7 @@
   %form.form-horizontal{:id => 'new-coin', :onsubmit => 'return false;'}
     .control-group
       %lable.control-label
-        Coin
+        Coin (facevalue)
       .controls
         %input{:placeholder => "penny, nickel, dime, ..."}
     .control-group
@@ -44,12 +47,7 @@
       %label.control-label
         Mint Location
       .controls
-        %input#mint-loc{:type => "text", :placeholder => "Philadelphia, Denver, San Francisco, ..."}
-    .control-group
-      %label.control-label
-        Face value
-      .controls
-        %input{:placeholder => "penny, nickel, dime, ...", :id => "face_value"}
+        %input#mint-loc{:placeholder => "Philadelphia, Denver, San Francisco, ..."}
     
     .control-group
       .controls
