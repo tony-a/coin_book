@@ -2,7 +2,10 @@ class CoinController < ApplicationController
   
   attr_accessor :mint_options
   def index
-  @mint_options = ["(P) Philadelphia", "(S) San Francisco", "(D) Denver"]
+  #  @mint_options = ["(P) Philadelphia", "(S) San Francisco", "(D) Denver"]
+    @users = User.all
+    @coins = Coin.all
+   
   end
   
   
@@ -14,4 +17,6 @@ class CoinController < ApplicationController
     flash[:success] = "Coin submitted :)"
     render :json => {}
   end
+  
+  
 end

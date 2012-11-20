@@ -31,11 +31,12 @@
   
 %h1 New coin form
 
+ 
 #new-coin
   %form.form-horizontal{:id => 'new-coin', :onsubmit => 'return false;'}
     .control-group
       %lable.control-label
-        Coin (facevalue)
+        Coin (Facevalue)
       .controls
         %input{:placeholder => "penny, nickel, dime, ..."}
     .control-group
@@ -52,3 +53,9 @@
     .control-group
       .controls
         %input.btn.btn-primary#submit-new-coin{:type => 'submit', :value => 'Submit Coin'}
+        
+test3
+= @coins
+
+
+= @users
