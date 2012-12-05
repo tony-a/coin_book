@@ -1,12 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  email      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
-  attr_reader :email, :password, :name
-  has_secure_password
-
-  before_save :create_cookie
-
-  private
-  def create_cookie
-  end
-    
+  attr_accessible :email, :name, :password
+  has_secure_password 
+  before_save { |user| user.email = email.downcase}
+  
+  validates :name, presence: true #prevents empty name from being passed in
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  
+  
+  
 end

@@ -3,7 +3,8 @@ class CoinController < ApplicationController
   attr_accessor :mint_options
   def index
   #  @mint_options = ["(P) Philadelphia", "(S) San Francisco", "(D) Denver"]
-    @users = User.all
+    @users = User.find_by_email('askar.b.tony@gmail.com')
+
     @coins = Coin.all
    
   end
