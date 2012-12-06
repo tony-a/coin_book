@@ -1,21 +1,19 @@
 class SessionsController < ApplicationController
   
-  
-  def index
-    @hi = User.all
-    
-  end
-  
+
   def new
-    @bye = 'that'
+    
   end
   
   def create
     user = User.find_by_email(params[:session][:email].downcase)
-   # print user
-   render 'new'
-#    print 'this is the session: ', params[:session]
- #   print "this email: ", params[:session][:email]
+    if user && user.authenticate(params[:session][:password])
+      sign_in user
+      redirect_to '/home'
+    else
+      flash.now[:error] = "wrong email/password combo :("
+      render 'new'
+    end
   end
   
   def destroy

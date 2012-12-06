@@ -10,4 +10,5 @@ CoinsApp::Application.routes.draw do
   match '/signin', to: 'sessions#new'
    
   resources :coin
+  resources :home
 end
