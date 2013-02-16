@@ -3,7 +3,8 @@ CoinsApp::Application.routes.draw do
 
   get "coin/index"
 
-  root :to => "coin#index"
+  #root :to => "coin#index"
+  root :to => "sessions#new"
   
   resources :sessions, only: [:new, :create, :destroy]
   
@@ -11,4 +12,8 @@ CoinsApp::Application.routes.draw do
    
   resources :coin
   resources :home
+  
+  resources :user
+
 end
+
